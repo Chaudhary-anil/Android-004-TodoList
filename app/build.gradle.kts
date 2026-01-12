@@ -1,9 +1,12 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -33,9 +36,17 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
+
+//    kotlinOptions {
+//        jvmTarget = "11"
+//    }
+
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
+        }
     }
+
     buildFeatures {
         compose = true
     }
@@ -76,6 +87,11 @@ dependencies {
     ksp("androidx.room:room-compiler:$room_version")
     implementation("androidx.room:room-ktx:${room_version}")
 
+    //navigation
+    implementation("androidx.navigation:navigation-compose:2.9.6")
+
+    //serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 
 }
 

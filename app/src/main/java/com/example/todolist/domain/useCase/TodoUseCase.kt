@@ -34,17 +34,24 @@ class UpdateTodoUseCase @Inject constructor(private val repository: TodoReposito
     }
 }
 
-class DeleteTodoUseCase(private val repository: TodoRepository) {
+class DeleteTodoUseCase @Inject constructor(private val repository: TodoRepository) {
     suspend operator fun invoke(todo: Todo) {
         repository.deleteTodo(todo = todo)
     }
 }
 
-class DeleteCompletedTodo(private val repository: TodoRepository) {
+class DeleteCompletedTodoUseCase @Inject constructor(private val repository: TodoRepository) {
     suspend operator fun invoke() {
         repository.deleteCompletedTodo()
     }
 }
+
+class ToggleCompleteUseCase @Inject constructor(private val repository: TodoRepository) {
+    suspend operator fun invoke(todo: Todo) {
+        repository.updateTodo(todo.copy(isCompleted = !todo.isCompleted))
+    }
+}
+
 
 
 
