@@ -73,7 +73,7 @@ fun TodoItemCard(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp)
+                    .padding(16.dp)
             ) {
                 Checkbox(
                     checked = todo.isCompleted,
