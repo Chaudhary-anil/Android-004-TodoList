@@ -41,7 +41,6 @@ class TodoHomeScreenViewModel @Inject constructor(
     private fun loadTodos() {
         viewModelScope.launch {
             state = state.copy(isLoading = true)
-            delay(10000)
 
             combine(
                 getTodosUseCase(),
