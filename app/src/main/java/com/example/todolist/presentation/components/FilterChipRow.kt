@@ -3,6 +3,7 @@ package com.example.todolist.presentation.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.FilterChip
@@ -22,29 +23,53 @@ fun FilterChipRow(viewModel: TodoHomeScreenViewModel = hiltViewModel()) {
 
     val selectedFilter = viewModel.state.filter
 
-    Row(modifier = Modifier
+    LazyRow (modifier = Modifier
         .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        FilterChipItem(
-            label = "All",
-            selected = selectedFilter == Filter.ALL
-        ) {
-            viewModel.onEvent(TodoHomeScreenEvent.FilterChanged(filter = Filter.ALL))
+        item {
+            FilterChipItem(
+                label = "All",
+                selected = selectedFilter == Filter.ALL
+            ) {
+                viewModel.onEvent(TodoHomeScreenEvent.FilterChanged(filter = Filter.ALL))
+            }
         }
 
-        FilterChipItem(
-            label = "ACTIVE",
-            selected = selectedFilter == Filter.ACTIVE
-        ) {
-            viewModel.onEvent(TodoHomeScreenEvent.FilterChanged(filter = Filter.ACTIVE))
+        item {
+            FilterChipItem(
+                label = "ACTIVE",
+                selected = selectedFilter == Filter.ACTIVE
+            ) {
+                viewModel.onEvent(TodoHomeScreenEvent.FilterChanged(filter = Filter.ACTIVE))
+            }
         }
 
-        FilterChipItem(
-            label = "COMPLETED",
-            selected = selectedFilter == Filter.COMPLETED
-        ) {
-            viewModel.onEvent(TodoHomeScreenEvent.FilterChanged(filter = Filter.COMPLETED))
+        item {
+            FilterChipItem(
+                label = "COMPLETED",
+                selected = selectedFilter == Filter.COMPLETED
+            ) {
+                viewModel.onEvent(TodoHomeScreenEvent.FilterChanged(filter = Filter.COMPLETED))
+            }
+        }
+
+        item {
+            FilterChipItem(label = "WORK", selected = selectedFilter == Filter.WORK) {
+                viewModel.onEvent(TodoHomeScreenEvent.FilterChanged(Filter.WORK))
+            }
+        }
+
+        item {
+            FilterChipItem(label = "Personal", selected = selectedFilter == Filter.PERSONAL) {
+                viewModel.onEvent(TodoHomeScreenEvent.FilterChanged(Filter.PERSONAL))
+            }
+        }
+
+        item {
+            FilterChipItem(label = "Shopping", selected = selectedFilter == Filter.SHOPPING) {
+                viewModel.onEvent(TodoHomeScreenEvent.FilterChanged(Filter.SHOPPING))
+            }
         }
     }
 

@@ -1,5 +1,5 @@
 package com.example.todolist.domain.model
 
 enum class Filter {
-    ALL,ACTIVE,COMPLETED
+    ALL,ACTIVE,COMPLETED, WORK, PERSONAL, SHOPPING
 }

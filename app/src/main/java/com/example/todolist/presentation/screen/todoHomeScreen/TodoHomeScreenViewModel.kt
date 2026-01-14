@@ -78,6 +78,9 @@ class TodoHomeScreenViewModel @Inject constructor(
                     Filter.ALL -> true
                     Filter.ACTIVE -> !todo.isCompleted
                     Filter.COMPLETED -> todo.isCompleted
+                    Filter.WORK -> todo.category == "Work"
+                    Filter.PERSONAL -> todo.category == "Personal"
+                    Filter.SHOPPING -> todo.category == "Shopping"
                 }
             }
             .filter { todo ->

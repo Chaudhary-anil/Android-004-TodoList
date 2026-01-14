@@ -27,6 +27,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.example.todolist.presentation.components.CategoryChipRow
 import com.example.todolist.presentation.components.PriorityChipRow
 import com.example.todolist.presentation.navigation.TodoHomeScreenRoute
 
@@ -102,6 +103,11 @@ fun TodoAddEditScreenUi(
             Text("Priority")
             PriorityChipRow(selectedPriority = state.priority) { viewModel.onEvent(
                 TodoAddEditScreenEvent.OnPriorityChange(it)) }
+
+            //Category chips
+            Text("Category")
+            CategoryChipRow(selectedCategory = state.category, onChangeCategory = { category -> viewModel.onEvent(
+                TodoAddEditScreenEvent.OnCategoryChange(category))})
         }
     }
 }
